@@ -1,0 +1,6 @@
+{
+  "port":             "8080",
+  "host":             "localhost",
+  "rawChannel":       "stats",
+  "processedChannel": "processed-stats"
+}
