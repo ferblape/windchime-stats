@@ -5,19 +5,19 @@ NODE_PATH=/usr/local/lib/node_modules
 NODE=/usr/local/bin/node
 
 APP=windchime-stats
-DIR=/home/ubuntu/www/windchime-stats/current
+BASE_DIR=/home/ubuntu/www/windchime-stats
+CURRENT_DIR=$BASE_DIR/current
+PID_DIR=$BASE_DIR/shared/pids
 
 test -x $NODE || exit 0
-test -x $DIR/log  || mkdir $DIR/log
-test -x $DIR/pids || mkdir $DIR/pids
 
 function start_app {
-  NODE_ENV=production nohup "$NODE" "$DIR/lib/"$APP".js" 1>>"$DIR/log/$APP.log" 2>&1 &
-  echo $! > "$DIR/pids/"$APP".pid"
+  NODE_ENV=production nohup "$NODE" "$CURRENT_DIR/lib/"$APP".js" 1>>"$CURRENT_DIR/log/$APP.log" 2>&1 &
+  echo $! > "$PID_DIR/"$APP".pid"
 }
 
 function stop_app {
-  kill `cat $DIR/pids/$APP.pid`
+  kill `cat $PID_DIR/$APP.pid`
 }
 
 case $1 in
