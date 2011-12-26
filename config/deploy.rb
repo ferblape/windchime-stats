@@ -41,9 +41,7 @@ namespace :deploy do
     run "#{current_path}/bin/windchime-stats-realtime.sh stop"
   end
   task :restart, :roles => :app, :except => { :no_release => true } do
-    run "#{current_path}/bin/windchime-stats.sh stop"
-    run "#{current_path}/bin/windchime-stats-realtime.sh stop"
-    run "#{current_path}/bin/windchime-stats.sh start"
-    run "#{current_path}/bin/windchime-stats-realtime.sh start"
+    run "#{current_path}/bin/windchime-stats.sh restart"
+    run "#{current_path}/bin/windchime-stats-realtime.sh restart"
   end
 end
