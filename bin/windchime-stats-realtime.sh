@@ -12,7 +12,7 @@ PID_DIR=$BASE_DIR/shared/pids
 test -x $NODE || exit 0
 
 function start_app {
-  NODE_ENV=production nohup "$NODE" "$CURRENT_DIR/lib/"$APP".js" 1>>"$CURRENT_DIR/log/$APP.log" 2>&1 &
+  NODE_ENV=production nohup "$NODE" "$CURRENT_DIR/lib/"$APP".js" "$CURRENT_DIR/config/config.json" 1>>"$CURRENT_DIR/log/$APP.log" 2>&1 &
   echo $! > "$PID_DIR/"$APP".pid"
 }
 
