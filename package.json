@@ -1,0 +1,11 @@
+{
+  "name"    : "windchime-stats",
+  "author"  : "Fernando Blat <blat@tol.do>",
+  "version" : "0.0.1",
+  "dependencies": {
+    "hiredis"   : ">= 0.1.x",
+    "redis"     : ">= 0.7.x",
+    "socket.io" : ">= 0.8.x"
+  },
+  "engine": "node >= 0.6.6"
+}
