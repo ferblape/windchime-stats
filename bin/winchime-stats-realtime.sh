@@ -8,8 +8,8 @@ APP=windchime-stats-realtime
 DIR=/home/ubuntu/www/windchime-stats
 
 test -x $NODE || exit 0
-text -x $DIR/logs || mkdir $DIR/logs
-text -x $DIR/pids || mkdir $DIR/pids
+test -x $DIR/logs || mkdir $DIR/logs
+test -x $DIR/pids || mkdir $DIR/pids
 
 function start_app {
   NODE_ENV=production nohup "$NODE" "$DIR/lib/"$APP".js" 1>>"$DIR/logs/$APP.log" 2>&1 &
