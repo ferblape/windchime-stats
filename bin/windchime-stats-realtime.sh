@@ -5,7 +5,7 @@ NODE_PATH=/usr/local/lib/node_modules
 NODE=/usr/local/bin/node
 
 APP=windchime-stats-realtime
-DIR=/home/ubuntu/www/windchime-stats
+DIR=/home/ubuntu/www/windchime-stats/current
 
 test -x $NODE || exit 0
 test -x $DIR/log  || mkdir $DIR/log
