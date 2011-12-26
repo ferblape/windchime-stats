@@ -27,7 +27,7 @@ after "deploy:update_code", :symlinks
 
 task :symlinks, :roles => [:app] do
   run <<-CMD
-    cp #{release_path}/config.example.json #{release_path}/config.json;
+    cp #{release_path}/config.example.json #{release_path}/config/config.json;
     ln -s #{shared_path}/pids #{release_path}/;
   CMD
 end
