@@ -1,34 +1,34 @@
 default_run_options[:pty] = true
+ssh_options[:forward_agent] = true
 
-set :application, 'windchime-stats'
+set :application, "windchime-stats"
 set :branch, "master"
 set :scm, :git
 set :git_shallow_clone, 1
-set :scm_user, 'ubuntu'
+set :scm_user, "ubuntu"
 set :use_sudo, false
-set :repository, "git://github.com/ferblape/windchime-stats.git"
-ssh_options[:forward_agent] = true
+set :repository, "git://github.com/ferblape/#{application}.git"
 set :keep_releases, 5
-
-set :appserver, '109.74.192.91'
+set :normalize_asset_timestamps, false
+set :appserver, "109.74.192.91"
+set :user, "ubuntu"
+set :port, "2222"
+set :deploy_to, "/home/ubuntu/www/#{application}"
 
 role :app, appserver
 role :web, appserver
 role :db,  appserver, :primary => true
 
-set :user,  'ubuntu'
-set :port, "2222"
+after "deploy:update_code", :symlinks, :install_dependencies
 
-set(:deploy_to){
-  "/home/ubuntu/www/windchime-stats"
-}
-
-after "deploy:update_code", :symlinks
-
+desc "Symlink folders"
 task :symlinks, :roles => [:app] do
-  run <<-CMD
-    ln -s #{shared_path}/pids #{release_path}/;
-  CMD
+  run "ln -s #{shared_path}/pids #{release_path}/;"
+end
+
+desc "Runs `npm install` command"
+task :install_dependencies, :roles => [:app] do
+  run "cd #{release_path}; npm install"
 end
 
 namespace :deploy do
