@@ -2,24 +2,30 @@
 
 Realtime two phases stats in your shop, powered with Node.JS, Redis and Websockets.
 
-## dependencies
+## Dependencies
 
 - `socket.io`
 - `hiredis`
 - `redis`
+- `Capistrano` Ruby gem (for deploying the code)
 
-## windchime-stats
+## `windchime-stats`
 
-Receives visitors data from a channel, processes it and updates the realtime channel.
+Receives visitors data from a Redis channel, processes it, stores it and updates the realtime channel.
 
-## windchime-stats-realtime
+## `windchime-stats-realtime`
 
-A proxy that receives information from the realtime channel in Redis and publishes it into the sockets.
+A proxy that receives information from the realtime channel in Redis and publishes it into the websockets.
+
+## Deployment
+
+Not being pretty sure how is the best way to deploy Node.js applications in production, this project uses two bash scripts which create a `pid` for each process and support `(start|stop|restart)` arguments. This way, the processes can be monitored in production using, for example, `monit` daemon.
+
+Also, Capistrano is configured in `config/deploy.rb` file. Some of the default tasks of a Ruby on Rails deployment have been overrided to be adapted to a Node.js application.
 
 ## TODO
 
-- improve deploy
-- manage dependencies
+- testing
 
 ## LICENSE
 
@@ -45,4 +51,5 @@ A proxy that receives information from the realtime channel in Redis and publish
 
 ## Credits
 
-Developed by Fernando Blat <blat@tol.do>, for [Toldo](http://tol.do)
+Developed by Fernando Blat <blat@tol.do>, for [Toldo](http://tol.do).
+Feel free to contact me for any question, suggestion or comments.
