@@ -1,7 +1,7 @@
 {
   "name"    : "windchime-stats",
   "author"  : "Fernando Blat <blat@tol.do>",
-  "version" : "0.0.1",
+  "version" : "0.1.0",
   "dependencies": {
     "hiredis"   : ">= 0.1.x",
     "redis"     : ">= 0.7.x",
