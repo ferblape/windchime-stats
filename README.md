@@ -1,6 +1,6 @@
 # Windchime Stats
 
-Realtime two phases stats in your shop, powered with Node.JS, Redis and Websockets.
+Experimental realtime stats in your Toldo shop, powered with Node.JS, Redis and Websockets.
 
 ## Dependencies
 
@@ -9,15 +9,15 @@ Realtime two phases stats in your shop, powered with Node.JS, Redis and Websocke
 - `redis`
 - `Capistrano` Ruby gem (for deploying the code)
 
-## `windchime-stats`
+## windchime-stats script
 
-Receives visitors data from a Redis channel, processes it, stores it and updates the realtime channel.
+Process visits from a Redis pub/sub channel, stores them and updates the realtime channel.
 
-## `windchime-stats-realtime`
+## windchime-stats-realtime script
 
-A proxy that receives information from the realtime channel in Redis and publishes it into the websockets.
+A proxy that receives information from the realtime channel in Redis and publishes it in the websockets.
 
-## Deployment
+## Deploy
 
 Not being pretty sure how is the best way to deploy Node.js applications in production, this project uses two bash scripts which create a `pid` for each process and support `(start|stop|restart)` arguments. This way, the processes can be monitored in production using, for example, `monit` daemon.
 
